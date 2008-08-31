@@ -2,3 +2,5 @@
 <use name=DataFormats/L1GlobalCaloTrigger>
 
 <bin name=testL1GlobalCaloRegionDetId file=testL1GlobalCaloRegionDetId.cpp></bin>
+
+<bin name=testGctDataFormats file=testGctDataFormats.cpp></bin>
