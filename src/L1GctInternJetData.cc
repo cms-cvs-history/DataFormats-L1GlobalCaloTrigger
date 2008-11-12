@@ -33,6 +33,26 @@ L1GctInternJetData::L1GctInternJetData(L1CaloRegionDetId rgn,
 }
 
 // 'named' constructors to avoid confusion
+
+// emulator calibrated jet ctor
+L1GctInternJetData L1GctInternJetData::fromEmulator(L1CaloRegionDetId rgn,
+						    int16_t bx,
+						    uint16_t et, 
+						    bool oflow,
+						    bool tauVeto,
+						    uint8_t eta,
+						    uint8_t phi,
+						    uint16_t rank) {
+  L1GctInternJetData d;
+
+  d.setType(emulator);
+  d.setRegionId(rgn);
+  d.setData(0, (oflow ? 1 : 0), et, eta, phi, (tauVeto ? 1 : 0), rank);
+  d.setBx(bx);
+
+  return d;
+}
+
 /// construct from "jet_cluster"
 L1GctInternJetData L1GctInternJetData::fromJetCluster(L1CaloRegionDetId rgn,
 						      uint16_t capBlock,
@@ -143,15 +163,36 @@ std::ostream& operator<<(std::ostream& s, const L1GctInternJetData& c) {
   if (c.empty()) { 
     s << " empty!"; 
   }
-  s << " type=" << c.type();
-  s << " oflow=" << c.oflow();
-  s << " et=" << c.et();
-  s << " eta=" << c.eta();
-  s << " phi=" << c.phi();
-  s << " tauVeto=" << c.tauVeto();
-  s << " rank=" << c.rank();
+  if (c.type()==L1GctInternJetData::jet_cluster){
+    s << " type=jet_cluster";
+    s << " oflow=" << c.oflow();
+    s << " et=" << c.et();
+    s << " eta=" << c.eta();
+    s << " phi=" << c.phi();
+    s << " tauVeto=" << c.tauVeto();
+    s << " rank=" << c.rank();
+  } else if (c.type()==L1GctInternJetData::jet_precluster){
+    s << " type=jet_precluster";
+    s << " oflow=" << c.oflow();
+    s << " et=" << c.et();
+    s << " eta=" << c.eta();
+    s << " tauVeto=" << c.tauVeto();
+  } else if (c.type()==L1GctInternJetData::jet_cluster_minimal){
+    s << " type=jet_cluster_minimal";
+    s << " oflow=" << c.oflow();
+    s << " eta=" << c.eta();
+    s << " phi=" << c.phi();
+    s << " tauVeto=" << c.tauVeto();
+    s << " rank=" << c.rank();
+  } else if (c.type()==L1GctInternJetData::gct_trig_object){
+    s << " type=gct_trig_object";
+    s << " eta=" << c.eta();
+    s << " phi=" << c.phi();
+    s << " rank=" << c.rank();
+  }
   s << " cap block=" << std::hex << c.capBlock();
-  s << " index=" << c.capIndex();
+  s << " index=" << std::dec << c.capIndex();
   s << " BX=" << c.bx();
+
   return s; 
 }
