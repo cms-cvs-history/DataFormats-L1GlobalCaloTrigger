@@ -59,16 +59,17 @@ namespace {
     // references, used by L1Extra
     edm::Ref<L1GctEmCandCollection> emRef ;
     edm::Ref<L1GctJetCandCollection> jetRef ;
-/*     edm::RefProd<L1GctEtTotal> etTotRef ; */
-/*     edm::RefProd<L1GctEtHad> etHadRef ; */
-/*     edm::RefProd<L1GctEtMiss> etMissRef ; */
-/*     edm::RefProd<L1GctHtMiss> htMissRef ; */
-/*     edm::RefProd<L1GctJetCounts> jetCountsRef; */
+    edm::RefProd<L1GctEtTotal> etTotRef ;
+    edm::RefProd<L1GctEtHad> etHadRef ;
+    edm::RefProd<L1GctEtMiss> etMissRef ;
+    edm::RefProd<L1GctHtMiss> htMissRef ;
+    edm::RefProd<L1GctJetCounts> jetCountsRef;
     edm::Ref<L1GctEtHadCollection> etHadCollRef ;
     edm::Ref<L1GctEtMissCollection> etMissCollRef ;
     edm::Ref<L1GctEtTotalCollection> etTotCollRef ;
     edm::Ref<L1GctHtMissCollection> htMissCollRef ;
+    edm::Ref<L1GctHFBitCountsCollection> hfBitCountsCollRef ;
+    edm::Ref<L1GctHFRingEtSumsCollection> hfEtSumsCollRef ;
     edm::Ref<L1GctJetCountsCollection> jetCountsCollRef;
-
   };
 }
